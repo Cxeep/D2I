@@ -41,7 +41,12 @@
 
 <script lang="ts" setup>
 import { onMounted, onBeforeUnmount, ref } from 'vue'
-import { sendMsgToPlugin, UIMessage, PluginMessage } from '@messages/sender'
+import {
+  PluginMessage,
+  subscribePluginMessages,
+  requestFilterableNodes,
+  requestSelectNode,
+} from '@lib/plugin-request'
 import {
   radialFourierMagnitudeFromPathData,
   cosineSimilarity,
@@ -102,9 +107,8 @@ function getIconDHash(icon: IconDef): bigint | null {
   return h
 }
 
-function handleMessage(event: MessageEvent) {
-  const msg = event.data
-  const { type, data } = msg || {}
+function handlePluginMessage(msg: { type: PluginMessage; data?: unknown }) {
+  const { type, data } = msg
   if (type === PluginMessage.FILTERABLE_NODES) {
     ensureIconDescriptors()
 
@@ -153,19 +157,16 @@ function handleMessage(event: MessageEvent) {
 
 function filterIconfont() {
   results.value = []
-  sendMsgToPlugin({ type: UIMessage.REQUEST_FILTERABLE_NODES })
+  requestFilterableNodes()
 }
 
 function selectNode(nodeId: string) {
-  sendMsgToPlugin({ type: UIMessage.SELECT_NODE, data: { nodeId } })
+  requestSelectNode(nodeId)
 }
 
 onMounted(() => {
-  window.addEventListener('message', handleMessage)
+  const unsub = subscribePluginMessages((msg) => handlePluginMessage(msg))
+  onBeforeUnmount(unsub)
   loadIconsFromGeneratedLibrary()
-})
-
-onBeforeUnmount(() => {
-  window.removeEventListener('message', handleMessage)
 })
 </script>

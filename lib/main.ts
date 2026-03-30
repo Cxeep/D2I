@@ -38,9 +38,6 @@ mg.ui.onmessage = (msg: { type: UIMessage, data: any }) => {
 
     const collect = (n: any, acc: any[]) => {
       acc.push(n)
-      // BOOLEAN_OPERATION：把它和它的子层当作一个整体参与匹配
-      // 所以这里不再展开其子孙节点，避免子节点被单独拿去和库比对
-      if (String(n?.type ?? '') === 'BOOLEAN_OPERATION') return
       const kids = n?.children
       if (Array.isArray(kids)) for (const k of kids) collect(k, acc)
     }
@@ -60,13 +57,6 @@ mg.ui.onmessage = (msg: { type: UIMessage, data: any }) => {
       if (String(n?.type ?? '') === 'BOOLEAN_OPERATION') return true
       return passVisiblePaintFilter(n)
     })
-
-    console.log('[D2I] filterNodes', filterNodes.map((n: any) => ({
-      id: n?.id,
-      name: n?.name,
-      type: n?.type,
-      boolDescendants: countBooleanDescendants(n),
-    })))
 
     Promise.all(filterNodes
       .map(async (node: any) => {
@@ -107,11 +97,6 @@ mg.ui.onmessage = (msg: { type: UIMessage, data: any }) => {
 
           // 复杂度过滤（path 指令总量）
           if (!passComplexityFilter(paths)) {
-            console.log('[D2I] complexity filtered', {
-              id: base.id,
-              type: base.type,
-              pathCount: paths.length,
-            })
             return null
           }
 
