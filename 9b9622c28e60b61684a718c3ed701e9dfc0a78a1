@@ -1,0 +1,24 @@
+lib/http.ts
+  652061c20eb00244 1-152
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.20",
+  "base_commit_sha": "9b9622c28e60b61684a718c3ed701e9dfc0a78a1",
+  "prompts": {
+    "652061c20eb00244": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "c4e68f1b-d20b-4fbe-a8d3-121075090385",
+        "model": "default"
+      },
+      "human_author": "周祥 <zhouxiang@TCN9924921.tcent.cn>",
+      "messages": [],
+      "total_additions": 152,
+      "total_deletions": 0,
+      "accepted_lines": 152,
+      "overriden_lines": 0,
+      "messages_url": "https://usegitai.com/cas/98efb73f1c6af304edc05be83eeedf80fafec3441fa3dce6eb8ad78825759ba2"
+    }
+  }
+}
