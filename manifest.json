@@ -1,0 +1,13 @@
+{
+  "name": "D2I",
+  "id": 186764836969122,
+  "main": "dist/main.js",
+  "ui": "dist/index.html",
+  "editor_type": [
+    "canvas",
+    "devMode"
+  ],
+  "capabilities": [
+    "inspect"
+  ]
+}
