@@ -1,0 +1,22 @@
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.20",
+  "base_commit_sha": "204a1916b5f4de097379c26e0d6054a0f8f3ef97",
+  "prompts": {
+    "652061c20eb00244": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "c4e68f1b-d20b-4fbe-a8d3-121075090385",
+        "model": "default"
+      },
+      "human_author": "周祥 <zhouxiang@TCN9924921.tcent.cn>",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 3,
+      "accepted_lines": 0,
+      "overriden_lines": 0,
+      "messages_url": "https://usegitai.com/cas/2e01576f5048b26fc99b61668187f26ae0e67a4c9082dcaf7ad4b793297bf9e2"
+    }
+  }
+}
